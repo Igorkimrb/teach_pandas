@@ -1,0 +1,3898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>1.5.1_фильтрация_строк_по_одному_условию</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 17.0px; font: 13.0px Courier; color: #4e4e4e; -webkit-text-stroke: #4e4e4e}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.2px; font: 13.0px Menlo; color: #336e6d; -webkit-text-stroke: #336e6d; background-color: #f2f2f2}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.2px; font: 13.0px Courier; color: #191919; -webkit-text-stroke: #191919; background-color: #f2f2f2}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.2px; font: 13.0px Courier; color: #a90e1a; -webkit-text-stroke: #a90e1a; background-color: #f2f2f2}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.2px; font: 13.0px Courier; color: #336e6d; -webkit-text-stroke: #336e6d; background-color: #f2f2f2}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 19.2px; font: 12.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.87); -webkit-text-stroke: rgba(0, 0, 0, 0.87); min-height: 15.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 19.2px; font: 12.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.87); -webkit-text-stroke: rgba(0, 0, 0, 0.87)}
+    p.p8 {margin: 0.0px 0.0px 14.0px 0.0px; line-height: 22.4px; font: 14.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.87); -webkit-text-stroke: rgba(0, 0, 0, 0.87)}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 18.3px; font: 13.0px Courier; color: #000000; color: rgba(0, 0, 0, 0.87); -webkit-text-stroke: rgba(0, 0, 0, 0.87)}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 13.0px Courier; font-kerning: none}
+    span.s3 {font-kerning: none; color: #0f7001; -webkit-text-stroke: 0px #0f7001}
+    span.s4 {font-kerning: none; color: #191919; -webkit-text-stroke: 0px #191919}
+    span.s5 {font-kerning: none; color: #9700ff; -webkit-text-stroke: 0px #9700ff}
+    span.s6 {font-kerning: none; color: #074099; -webkit-text-stroke: 0px #074099}
+    span.s7 {font: 13.0px Menlo; font-kerning: none}
+    span.s8 {font-kerning: none; color: #a90e1a; -webkit-text-stroke: 0px #a90e1a}
+    span.s9 {font-kerning: none; color: #107902; -webkit-text-stroke: 0px #107902}
+    table.t1 {margin: 0.0px 0.0px 12.0px 0.0px; border-collapse: collapse; table-layout: fixed}
+    td.td1 {width: 8.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td2 {width: 60.8px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td3 {width: 82.7px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td4 {width: 125.3px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td5 {width: 56.1px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td6 {width: 68.6px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td7 {width: 90.5px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td8 {width: 132.1px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td9 {width: 8.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td10 {width: 60.8px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td11 {width: 82.7px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td12 {width: 125.3px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td13 {width: 56.1px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td14 {width: 68.6px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td15 {width: 90.5px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td16 {width: 132.1px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td17 {width: 8.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td18 {width: 60.8px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td19 {width: 82.7px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td20 {width: 125.3px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td21 {width: 56.1px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td22 {width: 68.6px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td23 {width: 90.5px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td24 {width: 132.1px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td25 {width: 47.5px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td26 {width: 71.9px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td27 {width: 71.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td28 {width: 62.9px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td29 {width: 129.9px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td30 {width: 127.1px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td31 {width: 43.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td32 {width: 47.5px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td33 {width: 71.9px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td34 {width: 71.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td35 {width: 62.9px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td36 {width: 129.9px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td37 {width: 127.1px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td38 {width: 43.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td39 {width: 47.5px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td40 {width: 71.9px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td41 {width: 71.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td42 {width: 62.9px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td43 {width: 129.9px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td44 {width: 127.1px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td45 {width: 43.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td46 {width: 16.5px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td47 {width: 16.5px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td48 {width: 16.5px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td49 {width: 15.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td50 {width: 15.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td51 {width: 15.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td52 {width: 129.8px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td53 {width: 127.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td54 {width: 129.8px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td55 {width: 127.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td56 {width: 129.8px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td57 {width: 127.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td58 {width: 24.4px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td59 {width: 121.2px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td60 {width: 119.6px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td61 {width: 24.4px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td62 {width: 121.2px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td63 {width: 119.6px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td64 {width: 24.4px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td65 {width: 121.2px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td66 {width: 119.6px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td67 {width: 24.7px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td68 {width: 70.3px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td69 {width: 151.3px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td70 {width: 77.8px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td71 {width: 24.7px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td72 {width: 70.3px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td73 {width: 151.3px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td74 {width: 77.8px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td75 {width: 24.7px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td76 {width: 70.3px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td77 {width: 151.3px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td78 {width: 77.8px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td79 {width: 22.8px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td80 {width: 121.5px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td81 {width: 121.0px; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td82 {width: 22.8px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td83 {width: 121.5px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td84 {width: 121.0px; background-color: #ffffff; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td85 {width: 22.8px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td86 {width: 121.5px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+    td.td87 {width: 121.0px; background-color: #f2f2f2; padding: 6.0px 6.0px 6.0px 6.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">In [2]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>импортируем</i></span><span class="s2"><i> </i></span><span class="s1"><i>библиотеку</i></span><span class="s2"><i> pandas<span class="Apple-converted-space"> </span></i></span></p>
+<p class="p3"><span class="s3"><b>import</b></span><span class="s1"> pandas </span><span class="s3"><b>as</b></span><span class="s1"> pd</span></p>
+<p class="p1"><span class="s1">In [3]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>считываем</i></span><span class="s2"><i> </i></span><span class="s1"><i>данные</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>файлов</i></span></p>
+<p class="p4"><span class="s4">df_p </span><span class="s5"><b>=</b></span><span class="s4"> pd</span><span class="s5"><b>.</b></span><span class="s4">read_csv</span><span class="s6">(</span><span class="s1">'C:/Users/User/Desktop/</span><span class="s7">Данные</span><span class="s1"> </span><span class="s7">для</span><span class="s1"> pandas/Products.csv'</span><span class="s6">,</span><span class="s4"> sep </span><span class="s5"><b>=</b></span><span class="s4"> </span><span class="s1">';'</span><span class="s6">)</span></p>
+<p class="p4"><span class="s4">df_c </span><span class="s5"><b>=</b></span><span class="s4"> pd</span><span class="s5"><b>.</b></span><span class="s4">read_csv</span><span class="s6">(</span><span class="s1">'C:/Users/User/Desktop/</span><span class="s7">Данные</span><span class="s1"> </span><span class="s7">для</span><span class="s1"> pandas/Customers.csv'</span><span class="s6">,</span><span class="s4"> sep </span><span class="s5"><b>=</b></span><span class="s4"> </span><span class="s1">';'</span><span class="s6">)</span></p>
+<p class="p4"><span class="s4">df_o </span><span class="s5"><b>=</b></span><span class="s4"> pd</span><span class="s5"><b>.</b></span><span class="s4">read_csv</span><span class="s6">(</span><span class="s1">'C:/Users/User/Desktop/</span><span class="s7">Данные</span><span class="s1"> </span><span class="s7">для</span><span class="s1"> pandas/Orders.csv'</span><span class="s6">,</span><span class="s4"> sep </span><span class="s5"><b>=</b></span><span class="s4"> </span><span class="s1">';'</span><span class="s6">)</span></p>
+<p class="p4"><span class="s4">df_od </span><span class="s5"><b>=</b></span><span class="s4"> pd</span><span class="s5"><b>.</b></span><span class="s4">read_csv</span><span class="s6">(</span><span class="s1">'C:/Users/User/Desktop/</span><span class="s7">Данные</span><span class="s1"> </span><span class="s7">для</span><span class="s1"> pandas/Order_details.csv'</span><span class="s6">,</span><span class="s4"> sep </span><span class="s5"><b>=</b></span><span class="s4"> </span><span class="s1">';'</span><span class="s6">)</span></p>
+<p class="p4"><span class="s4">df_e </span><span class="s5"><b>=</b></span><span class="s4"> pd</span><span class="s5"><b>.</b></span><span class="s4">read_excel</span><span class="s6">(</span><span class="s1">'C:/Users/User/Desktop/</span><span class="s7">Данные</span><span class="s1"> </span><span class="s7">для</span><span class="s1"> pandas/Employees.xlsx'</span><span class="s6">)</span></p>
+<p class="p1"><span class="s1">In [4]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>операторы</i></span><span class="s2"><i> </i></span><span class="s1"><i>сравнения</i></span></p>
+<p class="p2"><span class="s2"><i># &gt; </i></span><span class="s1"><i>больше</i></span></p>
+<p class="p2"><span class="s2"><i># &lt; </i></span><span class="s1"><i>меньше</i></span></p>
+<p class="p2"><span class="s2"><i># &gt;= </i></span><span class="s1"><i>больше</i></span><span class="s2"><i> </i></span><span class="s1"><i>либо</i></span><span class="s2"><i> </i></span><span class="s1"><i>равно</i></span></p>
+<p class="p2"><span class="s2"><i># &lt;= </i></span><span class="s1"><i>меньше</i></span><span class="s2"><i> </i></span><span class="s1"><i>либо</i></span><span class="s2"><i> </i></span><span class="s1"><i>равно</i></span></p>
+<p class="p5"><span class="s1"><i># == </i></span><span class="s7"><i>равно</i></span></p>
+<p class="p2"><span class="s2"><i># != </i></span><span class="s1"><i>неравно</i></span></p>
+<p class="p5"><span class="s1"><i># isnull()</i></span></p>
+<p class="p1"><span class="s1">In [5]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>первые</i></span><span class="s2"><i> 5 </i></span><span class="s1"><i>строк</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>датафрейма</i></span><span class="s2"><i> df_p</i></span></p>
+<p class="p3"><span class="s1">df_p</span><span class="s5"><b>.</b></span><span class="s1">head</span><span class="s6">()</span></p>
+<p class="p1"><span class="s1">Out[5]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chai</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">10 boxes x 20 bags</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">18.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chang</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 12 oz bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">19.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Aniseed Syrup</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 550 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chef Anton's Cajun Seasoning</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">48 - 6 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">22.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chef Anton's Gumbo Mix</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">36 boxes</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">21.35</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [6]:</span></p>
+<p class="p5"><span class="s1"><i>#</i></span><span class="s7"><i>меняем</i></span><span class="s1"><i> </i></span><span class="s7"><i>тип</i></span><span class="s1"><i> </i></span><span class="s7"><i>данных</i></span><span class="s1"><i> </i></span><span class="s7"><i>у</i></span><span class="s1"><i> </i></span><span class="s7"><i>столбца</i></span><span class="s1"><i> Orderdate </i></span><span class="s7"><i>на</i></span><span class="s1"><i> datetime64</i></span></p>
+<p class="p4"><span class="s4">df_o</span><span class="s6">[</span><span class="s1">'OrderDate'</span><span class="s6">]</span><span class="s4"> </span><span class="s5"><b>=</b></span><span class="s4"> df_o</span><span class="s6">[</span><span class="s1">'OrderDate'</span><span class="s6">]</span><span class="s5"><b>.</b></span><span class="s4">astype</span><span class="s6">(</span><span class="s1">'datetime64'</span><span class="s6">)</span></p>
+<p class="p1"><span class="s1">In [7]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>первые</i></span><span class="s2"><i> 5 </i></span><span class="s1"><i>строк</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>датафрейма</i></span><span class="s2"><i> df_o</i></span></p>
+<p class="p3"><span class="s1">df_o</span><span class="s5"><b>.</b></span><span class="s1">head</span><span class="s6">()</span></p>
+<p class="p1"><span class="s1">Out[7]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td25">
+        <p class="p7"><span class="s1"><b>OrderID</b></span></p>
+      </td>
+      <td valign="middle" class="td26">
+        <p class="p7"><span class="s1"><b>CustomerID</b></span></p>
+      </td>
+      <td valign="middle" class="td27">
+        <p class="p7"><span class="s1"><b>EmployeeID</b></span></p>
+      </td>
+      <td valign="middle" class="td28">
+        <p class="p7"><span class="s1"><b>OrderDate</b></span></p>
+      </td>
+      <td valign="middle" class="td29">
+        <p class="p7"><span class="s1"><b>RequiredDate</b></span></p>
+      </td>
+      <td valign="middle" class="td30">
+        <p class="p7"><span class="s1"><b>ShippedDate</b></span></p>
+      </td>
+      <td valign="middle" class="td31">
+        <p class="p7"><span class="s1"><b>Freight</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10248</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">VINET</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-04</span></p>
+      </td>
+      <td valign="middle" class="td36">
+        <p class="p7"><span class="s1">1996-08-01 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td37">
+        <p class="p7"><span class="s1">1996-07-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">32.38</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10249</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">TOMSP</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-05</span></p>
+      </td>
+      <td valign="middle" class="td43">
+        <p class="p7"><span class="s1">1996-08-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td44">
+        <p class="p7"><span class="s1">1996-07-10 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">11.61</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10250</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">HANAR</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td36">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td37">
+        <p class="p7"><span class="s1">1996-07-12 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">65.83</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10251</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">VICTE</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td43">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td44">
+        <p class="p7"><span class="s1">1996-07-15 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">41.34</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10252</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">SUPRD</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-09</span></p>
+      </td>
+      <td valign="middle" class="td36">
+        <p class="p7"><span class="s1">1996-08-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td37">
+        <p class="p7"><span class="s1">1996-07-11 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">51.30</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [8]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выбираем</i></span><span class="s2"><i> </i></span><span class="s1"><i>товары</i></span><span class="s2"><i>/</i></span><span class="s1"><i>строки</i></span><span class="s2"><i>, </i></span><span class="s1"><i>которые</i></span><span class="s2"><i> </i></span><span class="s1"><i>относятся</i></span><span class="s2"><i> </i></span><span class="s1"><i>к</i></span><span class="s2"><i> </i></span><span class="s1"><i>категории</i></span><span class="s2"><i> Condiments</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'CategoryName'</span><span class="s6">]</span><span class="s5"><b>==</b></span><span class="s1">'Condiments'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[8]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td46">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Aniseed Syrup</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 550 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chef Anton's Cajun Seasoning</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">48 - 6 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">22.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chef Anton's Gumbo Mix</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">36 boxes</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">21.35</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>5</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Grandma's Boysenberry Spread</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 8 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">25.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>7</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Northwoods Cranberry Sauce</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 12 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">40.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>14</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">15</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Genen Shouyu</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 250 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">15.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>43</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">44</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Gula Malacca</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">20 - 2 kg bags</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">19.45</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>60</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">61</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Sirop d'erable</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 500 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">28.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>62</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">63</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Vegie-spread</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">15 - 625 g jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">43.90</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>64</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">65</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Louisiana Fiery Hot Pepper Sauce</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">32 - 8 oz bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">21.05</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>65</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">66</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Louisiana Hot Spiced Okra</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">24 - 8 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">17.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>76</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">77</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Original Frankfurter gr?ne Sobe</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 boxes</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">13.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [9]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>второй</i></span><span class="s2"><i> </i></span><span class="s1"><i>вариант</i></span><span class="s2"><i><span class="Apple-converted-space"> </span></i></span></p>
+<p class="p3"><span class="s1">df_p</span><span class="s6">[</span><span class="s1">df_p</span><span class="s5"><b>.</b></span><span class="s1">CategoryName</span><span class="s5"><b>==</b></span><span class="s8">'Condiments'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[9]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td46">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Aniseed Syrup</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 550 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chef Anton's Cajun Seasoning</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">48 - 6 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">22.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chef Anton's Gumbo Mix</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">36 boxes</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">21.35</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>5</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Grandma's Boysenberry Spread</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 8 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">25.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>7</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Northwoods Cranberry Sauce</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 12 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">40.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>14</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">15</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Genen Shouyu</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 250 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">15.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>43</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">44</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Gula Malacca</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">20 - 2 kg bags</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">19.45</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>60</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">61</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Sirop d'erable</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 500 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">28.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>62</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">63</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Vegie-spread</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">15 - 625 g jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">43.90</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>64</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">65</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Louisiana Fiery Hot Pepper Sauce</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">32 - 8 oz bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">21.05</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>65</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">66</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Louisiana Hot Spiced Okra</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">24 - 8 oz jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">17.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>76</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">77</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Original Frankfurter gr?ne Sobe</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 boxes</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">13.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [10]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выбираем</i></span><span class="s2"><i> </i></span><span class="s1"><i>товары</i></span><span class="s2"><i>/</i></span><span class="s1"><i>строки</i></span><span class="s2"><i>, </i></span><span class="s1"><i>которые</i></span><span class="s2"><i> </i></span><span class="s1"><i>не</i></span><span class="s2"><i> </i></span><span class="s1"><i>относятся</i></span><span class="s2"><i> </i></span><span class="s1"><i>к</i></span><span class="s2"><i> </i></span><span class="s1"><i>категории</i></span><span class="s2"><i> Condiments, </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>помощью</i></span><span class="s2"><i> ~ (</i></span><span class="s1"><i>не</i></span><span class="s2"><i>)</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s5"><b>~</b></span><span class="s6">(</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'CategoryName'</span><span class="s6">]</span><span class="s5"><b>==</b></span><span class="s1">'Condiments'</span><span class="s6">)]</span></p>
+<p class="p1"><span class="s1">Out[10]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td49">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chai</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">10 boxes x 20 bags</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">18.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chang</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 12 oz bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">19.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>6</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Uncle Bob's Organic Dried Pears</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 1 lb pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">30.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Produce</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Dried fruit and bean curd</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>8</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Mishi Kobe Niku</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">18 - 500 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">97.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Meat/Poultry</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Prepared meats</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>9</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Ikura</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 200 ml jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">31.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>...</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>71</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">72</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Mozzarella di Giovanni</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">24 - 200 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">34.80</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Dairy Products</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Cheeses</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>72</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">73</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Rod Kaviar</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 150 g jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">15.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>73</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">74</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Longlife Tofu</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">5 kg pkg.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Produce</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Dried fruit and bean curd</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>74</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">75</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Rhonbrau Klosterbier</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 0.5 l bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">7.75</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>75</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">76</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Lakkalikoori</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">500 ml</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">18.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><span class="s1">65 rows × 7 columns</span></p>
+<p class="p1"><span class="s1">In [11]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>после</i></span><span class="s2"><i> </i></span><span class="s1"><i>фильтрации</i></span><span class="s2"><i> </i></span><span class="s1"><i>мы</i></span><span class="s2"><i> </i></span><span class="s1"><i>можем</i></span><span class="s2"><i> </i></span><span class="s1"><i>работать</i></span><span class="s2"><i> </i></span><span class="s1"><i>дальше</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>датафреймом</i></span><span class="s2"><i> </i></span><span class="s1"><i>и</i></span><span class="s2"><i>, </i></span><span class="s1"><i>например</i></span><span class="s2"><i>, </i></span><span class="s1"><i>вывести</i></span><span class="s2"><i> </i></span><span class="s1"><i>нужные</i></span><span class="s2"><i> </i></span><span class="s1"><i>столбцы</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s5"><b>~</b></span><span class="s6">(</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'CategoryName'</span><span class="s6">]</span><span class="s5"><b>==</b></span><span class="s1">'Condiments'</span><span class="s6">)][[</span><span class="s1">'CategoryID'</span><span class="s6">,</span><span class="s1">'UnitPrice'</span><span class="s6">]][</span><span class="s1">'UnitPrice'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[11]:</span></p>
+<p class="p9"><span class="s1">0 <span class="Apple-converted-space">    </span>18.00</span></p>
+<p class="p9"><span class="s1">1 <span class="Apple-converted-space">    </span>19.00</span></p>
+<p class="p9"><span class="s1">6 <span class="Apple-converted-space">    </span>30.00</span></p>
+<p class="p9"><span class="s1">8 <span class="Apple-converted-space">    </span>97.00</span></p>
+<p class="p9"><span class="s1">9 <span class="Apple-converted-space">    </span>31.00</span></p>
+<p class="p9"><span class="s1"><span class="Apple-converted-space">      </span>... <span class="Apple-converted-space"> </span></span></p>
+<p class="p9"><span class="s1">71<span class="Apple-converted-space">    </span>34.80</span></p>
+<p class="p9"><span class="s1">72<span class="Apple-converted-space">    </span>15.00</span></p>
+<p class="p9"><span class="s1">73<span class="Apple-converted-space">    </span>10.00</span></p>
+<p class="p9"><span class="s1">74 <span class="Apple-converted-space">    </span>7.75</span></p>
+<p class="p9"><span class="s1">75<span class="Apple-converted-space">    </span>18.00</span></p>
+<p class="p9"><span class="s1">Name: UnitPrice, Length: 65, dtype: float64</span></p>
+<p class="p1"><span class="s1">In [12]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>еще</i></span><span class="s2"><i> </i></span><span class="s1"><i>один</i></span><span class="s2"><i> </i></span><span class="s1"><i>способ</i></span><span class="s2"><i> </i></span><span class="s1"><i>вывести</i></span><span class="s2"><i> </i></span><span class="s1"><i>товары</i></span><span class="s2"><i>, </i></span><span class="s1"><i>которые</i></span><span class="s2"><i> </i></span><span class="s1"><i>не</i></span><span class="s2"><i> </i></span><span class="s1"><i>входят</i></span><span class="s2"><i> </i></span><span class="s1"><i>в</i></span><span class="s2"><i> </i></span><span class="s1"><i>категорию</i></span><span class="s2"><i> Condiments, </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>помощью</i></span><span class="s2"><i> </i></span><span class="s1"><i>оператора</i></span><span class="s2"><i> </i></span><span class="s1"><i>не</i></span><span class="s2"><i> </i></span><span class="s1"><i>равно</i></span><span class="s2"><i> !=</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'CategoryName'</span><span class="s6">]</span><span class="s5"><b>!=</b></span><span class="s1">'Condiments'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[12]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td49">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Chai</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">10 boxes x 20 bags</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">18.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Chang</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 12 oz bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">19.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>6</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Uncle Bob's Organic Dried Pears</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 1 lb pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">30.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Produce</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Dried fruit and bean curd</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>8</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Mishi Kobe Niku</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">18 - 500 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">97.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Meat/Poultry</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Prepared meats</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>9</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Ikura</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 200 ml jars</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">31.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>...</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>71</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">72</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Mozzarella di Giovanni</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">24 - 200 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">34.80</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Dairy Products</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Cheeses</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>72</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">73</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Rod Kaviar</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 150 g jars</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">15.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>73</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">74</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Longlife Tofu</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">5 kg pkg.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Produce</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Dried fruit and bean curd</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td51">
+        <p class="p7"><span class="s1"><b>74</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">75</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Rhonbrau Klosterbier</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 0.5 l bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">7.75</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td50">
+        <p class="p7"><span class="s1"><b>75</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">76</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Lakkalikoori</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">500 ml</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">18.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><span class="s1">65 rows × 7 columns</span></p>
+<p class="p1"><span class="s1">In [13]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выбираем</i></span><span class="s2"><i> </i></span><span class="s1"><i>товары</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>ценой</i></span><span class="s2"><i> </i></span><span class="s1"><i>меньше</i></span><span class="s2"><i> </i></span><span class="s1"><i>или</i></span><span class="s2"><i> </i></span><span class="s1"><i>равно</i></span><span class="s2"><i> 10</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'UnitPrice'</span><span class="s6">]</span><span class="s5"><b>&lt;=</b></span><span class="s9">10</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[13]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td46">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Aniseed Syrup</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 550 ml bottles</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Condiments</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Sweet and savory sauces. relishes. spreads. an...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>12</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">13</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Konbu</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">2 kg box</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">6.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>18</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">19</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Teatime Chocolate Biscuits</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">10 boxes x 12 pieces</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">9.20</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Confections</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Desserts. candies. and sweet breads</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>20</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">21</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Sir Rodney's Scones</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 pkgs. x 4 pieces</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Confections</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Desserts. candies. and sweet breads</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>22</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">23</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Tunnbrod</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 250 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">9.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Grains/Cereals</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Breads. crackers. pasta. and cereal</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>23</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Guaran? Fant?stica</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 355 ml cans</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">4.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>32</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">33</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Geitost</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">500 g</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">2.50</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Dairy Products</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Cheeses</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>40</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">41</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Jack's New England Clam Chowder</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 12 oz cans</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">9.65</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>44</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">45</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Rogede sild</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">1k pkg.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">9.50</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>46</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">47</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Zaanse koeken</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">10 - 4 oz boxes</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">9.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Confections</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Desserts. candies. and sweet breads</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>51</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">52</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Filo Mix</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">16 - 2 kg boxes</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">7.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Grains/Cereals</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Breads. crackers. pasta. and cereal</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>53</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">54</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Tourtiere</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">16 pies</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">7.45</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Meat/Poultry</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Prepared meats</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>73</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">74</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Longlife Tofu</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">5 kg pkg.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">10.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Produce</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Dried fruit and bean curd</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>74</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">75</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Rhonbrau Klosterbier</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">24 - 0.5 l bottles</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">7.75</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [15]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выбираем</i></span><span class="s2"><i> </i></span><span class="s1"><i>товары</i></span><span class="s2"><i> </i></span><span class="s1"><i>с</i></span><span class="s2"><i> </i></span><span class="s1"><i>ценой</i></span><span class="s2"><i> </i></span><span class="s1"><i>меньше</i></span><span class="s2"><i> 10</i></span></p>
+<p class="p4"><span class="s4">df_p</span><span class="s6">[</span><span class="s4">df_p</span><span class="s6">[</span><span class="s1">'UnitPrice'</span><span class="s6">]</span><span class="s5"><b>&lt;</b></span><span class="s9">10</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[15]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td46">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p7"><span class="s1"><b>ProductID</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p7"><span class="s1"><b>ProductName</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p7"><span class="s1"><b>Product_Description</b></span></p>
+      </td>
+      <td valign="middle" class="td5">
+        <p class="p7"><span class="s1"><b>UnitPrice</b></span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p7"><span class="s1"><b>CategoryID</b></span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p7"><span class="s1"><b>CategoryName</b></span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p7"><span class="s1"><b>Category_Description</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>12</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">13</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Konbu</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">2 kg box</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">6.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>18</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">19</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Teatime Chocolate Biscuits</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">10 boxes x 12 pieces</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">9.20</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Confections</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Desserts. candies. and sweet breads</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>22</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">23</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Tunnbrod</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">12 - 250 g pkgs.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">9.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Grains/Cereals</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Breads. crackers. pasta. and cereal</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>23</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Guaran? Fant?stica</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 355 ml cans</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">4.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>32</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">33</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Geitost</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">500 g</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">2.50</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Dairy Products</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Cheeses</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>40</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">41</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Jack's New England Clam Chowder</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">12 - 12 oz cans</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">9.65</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>44</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">45</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Rogede sild</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">1k pkg.</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">9.50</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Seafood</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Seaweed and fish</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>46</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">47</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Zaanse koeken</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">10 - 4 oz boxes</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">9.50</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Confections</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Desserts. candies. and sweet breads</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>51</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">52</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Filo Mix</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">16 - 2 kg boxes</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">7.00</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Grains/Cereals</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Breads. crackers. pasta. and cereal</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td48">
+        <p class="p7"><span class="s1"><b>53</b></span></p>
+      </td>
+      <td valign="middle" class="td18">
+        <p class="p7"><span class="s1">54</span></p>
+      </td>
+      <td valign="middle" class="td19">
+        <p class="p7"><span class="s1">Tourtiere</span></p>
+      </td>
+      <td valign="middle" class="td20">
+        <p class="p7"><span class="s1">16 pies</span></p>
+      </td>
+      <td valign="middle" class="td21">
+        <p class="p7"><span class="s1">7.45</span></p>
+      </td>
+      <td valign="middle" class="td22">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td23">
+        <p class="p7"><span class="s1">Meat/Poultry</span></p>
+      </td>
+      <td valign="middle" class="td24">
+        <p class="p7"><span class="s1">Prepared meats</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td47">
+        <p class="p7"><span class="s1"><b>74</b></span></p>
+      </td>
+      <td valign="middle" class="td10">
+        <p class="p7"><span class="s1">75</span></p>
+      </td>
+      <td valign="middle" class="td11">
+        <p class="p7"><span class="s1">Rhonbrau Klosterbier</span></p>
+      </td>
+      <td valign="middle" class="td12">
+        <p class="p7"><span class="s1">24 - 0.5 l bottles</span></p>
+      </td>
+      <td valign="middle" class="td13">
+        <p class="p7"><span class="s1">7.75</span></p>
+      </td>
+      <td valign="middle" class="td14">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td15">
+        <p class="p7"><span class="s1">Beverages</span></p>
+      </td>
+      <td valign="middle" class="td16">
+        <p class="p7"><span class="s1">Soft drinks. coffees. teas. beers. and ales</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [16]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>заказы</i></span><span class="s2"><i>, </i></span><span class="s1"><i>которые</i></span><span class="s2"><i> </i></span><span class="s1"><i>были</i></span><span class="s2"><i> </i></span><span class="s1"><i>оформлены</i></span><span class="s2"><i> </i></span><span class="s1"><i>ранее</i></span><span class="s2"><i> 1996-07-08 </i></span><span class="s1"><i>включительно</i></span></p>
+<p class="p4"><span class="s4">df_o</span><span class="s6">[</span><span class="s4">df_o</span><span class="s6">[</span><span class="s1">'OrderDate'</span><span class="s6">]</span><span class="s5"><b>&lt;=</b></span><span class="s1">'1996-07-08'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[16]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td25">
+        <p class="p7"><span class="s1"><b>OrderID</b></span></p>
+      </td>
+      <td valign="middle" class="td26">
+        <p class="p7"><span class="s1"><b>CustomerID</b></span></p>
+      </td>
+      <td valign="middle" class="td27">
+        <p class="p7"><span class="s1"><b>EmployeeID</b></span></p>
+      </td>
+      <td valign="middle" class="td28">
+        <p class="p7"><span class="s1"><b>OrderDate</b></span></p>
+      </td>
+      <td valign="middle" class="td52">
+        <p class="p7"><span class="s1"><b>RequiredDate</b></span></p>
+      </td>
+      <td valign="middle" class="td53">
+        <p class="p7"><span class="s1"><b>ShippedDate</b></span></p>
+      </td>
+      <td valign="middle" class="td31">
+        <p class="p7"><span class="s1"><b>Freight</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10248</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">VINET</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-04</span></p>
+      </td>
+      <td valign="middle" class="td54">
+        <p class="p7"><span class="s1">1996-08-01 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td55">
+        <p class="p7"><span class="s1">1996-07-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">32.38</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10249</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">TOMSP</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-05</span></p>
+      </td>
+      <td valign="middle" class="td56">
+        <p class="p7"><span class="s1">1996-08-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td57">
+        <p class="p7"><span class="s1">1996-07-10 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">11.61</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td9">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10250</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">HANAR</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td54">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td55">
+        <p class="p7"><span class="s1">1996-07-12 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">65.83</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td17">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10251</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">VICTE</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td56">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td57">
+        <p class="p7"><span class="s1">1996-07-15 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">41.34</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [17]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>заказы</i></span><span class="s2"><i>, </i></span><span class="s1"><i>которые</i></span><span class="s2"><i> </i></span><span class="s1"><i>были</i></span><span class="s2"><i> </i></span><span class="s1"><i>оформлены</i></span><span class="s2"><i> </i></span><span class="s1"><i>позднее</i></span><span class="s2"><i> 1996-07-08</i></span></p>
+<p class="p4"><span class="s4">df_o</span><span class="s6">[</span><span class="s4">df_o</span><span class="s6">[</span><span class="s1">'OrderDate'</span><span class="s6">]</span><span class="s5"><b>&gt;</b></span><span class="s1">'1996-07-08'</span><span class="s6">]</span></p>
+<p class="p1"><span class="s1">Out[17]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td58">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td25">
+        <p class="p7"><span class="s1"><b>OrderID</b></span></p>
+      </td>
+      <td valign="middle" class="td26">
+        <p class="p7"><span class="s1"><b>CustomerID</b></span></p>
+      </td>
+      <td valign="middle" class="td27">
+        <p class="p7"><span class="s1"><b>EmployeeID</b></span></p>
+      </td>
+      <td valign="middle" class="td28">
+        <p class="p7"><span class="s1"><b>OrderDate</b></span></p>
+      </td>
+      <td valign="middle" class="td59">
+        <p class="p7"><span class="s1"><b>RequiredDate</b></span></p>
+      </td>
+      <td valign="middle" class="td60">
+        <p class="p7"><span class="s1"><b>ShippedDate</b></span></p>
+      </td>
+      <td valign="middle" class="td31">
+        <p class="p7"><span class="s1"><b>Freight</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10252</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">SUPRD</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-09</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1996-08-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">1996-07-11 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">51.30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td64">
+        <p class="p7"><span class="s1"><b>5</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10253</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">HANAR</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-10</span></p>
+      </td>
+      <td valign="middle" class="td65">
+        <p class="p7"><span class="s1">1996-07-24 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td66">
+        <p class="p7"><span class="s1">1996-07-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">58.17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>6</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10254</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">CHOPS</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-11</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1996-08-08 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">1996-07-23 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">22.98</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td64">
+        <p class="p7"><span class="s1"><b>7</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10255</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">RICSU</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-12</span></p>
+      </td>
+      <td valign="middle" class="td65">
+        <p class="p7"><span class="s1">1996-08-09 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td66">
+        <p class="p7"><span class="s1">1996-07-15 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">148.33</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>8</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10256</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">WELLI</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-15</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1996-08-12 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">1996-07-17 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">13.97</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td64">
+        <p class="p7"><span class="s1"><b>...</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td65">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td66">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>825</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11073</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">PERIC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-05-05</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1998-06-02 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">24.95</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td64">
+        <p class="p7"><span class="s1"><b>826</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11074</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">SIMOB</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td65">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td66">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">18.44</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>827</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11075</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">RICSU</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">6.19</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td64">
+        <p class="p7"><span class="s1"><b>828</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11076</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">BONAP</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td65">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td66">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">38.28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td61">
+        <p class="p7"><span class="s1"><b>829</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11077</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">RATTC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td62">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td63">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">8.53</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><span class="s1">826 rows × 7 columns</span></p>
+<p class="p1"><span class="s1">In [19]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>заказы</i></span><span class="s2"><i>, </i></span><span class="s1"><i>у</i></span><span class="s2"><i> </i></span><span class="s1"><i>которых</i></span><span class="s2"><i> </i></span><span class="s1"><i>дата</i></span><span class="s2"><i> </i></span><span class="s1"><i>доставки</i></span><span class="s2"><i> </i></span><span class="s1"><i>не</i></span><span class="s2"><i> </i></span><span class="s1"><i>указана</i></span></p>
+<p class="p3"><span class="s1">df_o</span><span class="s6">[</span><span class="s1">df_o</span><span class="s6">[</span><span class="s8">'ShippedDate'</span><span class="s6">]</span><span class="s5"><b>.</b></span><span class="s1">isnull</span><span class="s6">()]</span></p>
+<p class="p1"><span class="s1">Out[19]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td67">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td25">
+        <p class="p7"><span class="s1"><b>OrderID</b></span></p>
+      </td>
+      <td valign="middle" class="td26">
+        <p class="p7"><span class="s1"><b>CustomerID</b></span></p>
+      </td>
+      <td valign="middle" class="td27">
+        <p class="p7"><span class="s1"><b>EmployeeID</b></span></p>
+      </td>
+      <td valign="middle" class="td68">
+        <p class="p7"><span class="s1"><b>OrderDate</b></span></p>
+      </td>
+      <td valign="middle" class="td69">
+        <p class="p7"><span class="s1"><b>RequiredDate</b></span></p>
+      </td>
+      <td valign="middle" class="td70">
+        <p class="p7"><span class="s1"><b>ShippedDate</b></span></p>
+      </td>
+      <td valign="middle" class="td31">
+        <p class="p7"><span class="s1"><b>Freight</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>760</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11008</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">ERNSH</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-08</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-05-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">79.46</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>771</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11019</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">RANCH</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-04-13</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-05-11 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">3.17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>791</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11039</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">LINOD</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-21</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-05-19 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">65.00</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>792</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11040</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">GREAL</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-04-22</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-05-20 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">18.84</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>797</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11045</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">BOTTM</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-23</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-05-21 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">70.58</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>803</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11051</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">LAMAI</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-04-27</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-05-25 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">2.79</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>806</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11054</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">CACTU</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-28</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-05-26 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">0.33</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>810</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11058</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">BLAUS</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-04-29</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-05-27 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">31.14</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>811</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11059</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">RICAR</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-29</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-10 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">85.80</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>813</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11061</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">GREAL</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-04-30</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-06-11 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">14.01</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>814</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11062</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">REGGC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-04-30</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-05-28 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">29.93</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>817</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11065</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">LILAS</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-05-01</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-05-29 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">12.91</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>820</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11068</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">QUEEN</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-05-04</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-01 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">81.75</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>822</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11070</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">LEHMS</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-05-05</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-06-02 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">136.00</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>823</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11071</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">LILAS</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-05-05</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-02 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">0.93</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>824</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11072</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">ERNSH</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-05-05</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-06-02 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">258.64</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>825</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11073</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">PERIC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-05-05</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-02 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">24.95</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>826</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11074</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">SIMOB</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">18.44</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>827</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11075</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">RICSU</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">6.19</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td75">
+        <p class="p7"><span class="s1"><b>828</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11076</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">BONAP</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td76">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td77">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td78">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">38.28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td71">
+        <p class="p7"><span class="s1"><b>829</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11077</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">RATTC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td72">
+        <p class="p7"><span class="s1">1998-05-06</span></p>
+      </td>
+      <td valign="middle" class="td73">
+        <p class="p7"><span class="s1">1998-06-03 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td74">
+        <p class="p7"><span class="s1">NaN</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">8.53</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p1"><span class="s1">In [20]:</span></p>
+<p class="p2"><span class="s2"><i>#</i></span><span class="s1"><i>выводим</i></span><span class="s2"><i> </i></span><span class="s1"><i>заказы</i></span><span class="s2"><i>, </i></span><span class="s1"><i>у</i></span><span class="s2"><i> </i></span><span class="s1"><i>которых</i></span><span class="s2"><i> </i></span><span class="s1"><i>дата</i></span><span class="s2"><i> </i></span><span class="s1"><i>доставки</i></span><span class="s2"><i> </i></span><span class="s1"><i>указана</i></span></p>
+<p class="p3"><span class="s1">df_o</span><span class="s6">[</span><span class="s5"><b>~</b></span><span class="s6">(</span><span class="s1">df_o</span><span class="s6">[</span><span class="s8">'ShippedDate'</span><span class="s6">]</span><span class="s5"><b>.</b></span><span class="s1">isnull</span><span class="s6">())]</span></p>
+<p class="p1"><span class="s1">Out[20]:</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td79">
+        <p class="p6"><span class="s1"><b></b></span><br></p>
+      </td>
+      <td valign="middle" class="td25">
+        <p class="p7"><span class="s1"><b>OrderID</b></span></p>
+      </td>
+      <td valign="middle" class="td26">
+        <p class="p7"><span class="s1"><b>CustomerID</b></span></p>
+      </td>
+      <td valign="middle" class="td27">
+        <p class="p7"><span class="s1"><b>EmployeeID</b></span></p>
+      </td>
+      <td valign="middle" class="td28">
+        <p class="p7"><span class="s1"><b>OrderDate</b></span></p>
+      </td>
+      <td valign="middle" class="td80">
+        <p class="p7"><span class="s1"><b>RequiredDate</b></span></p>
+      </td>
+      <td valign="middle" class="td81">
+        <p class="p7"><span class="s1"><b>ShippedDate</b></span></p>
+      </td>
+      <td valign="middle" class="td31">
+        <p class="p7"><span class="s1"><b>Freight</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>0</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10248</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">VINET</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-04</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1996-08-01 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1996-07-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">32.38</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td85">
+        <p class="p7"><span class="s1"><b>1</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10249</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">TOMSP</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-05</span></p>
+      </td>
+      <td valign="middle" class="td86">
+        <p class="p7"><span class="s1">1996-08-16 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td87">
+        <p class="p7"><span class="s1">1996-07-10 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">11.61</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>2</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10250</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">HANAR</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1996-07-12 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">65.83</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td85">
+        <p class="p7"><span class="s1"><b>3</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">10251</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">VICTE</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1996-07-08</span></p>
+      </td>
+      <td valign="middle" class="td86">
+        <p class="p7"><span class="s1">1996-08-05 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td87">
+        <p class="p7"><span class="s1">1996-07-15 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">41.34</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>4</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">10252</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">SUPRD</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1996-07-09</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1996-08-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1996-07-11 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">51.30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td85">
+        <p class="p7"><span class="s1"><b>...</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td86">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td87">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">...</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>815</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11063</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">HUNGO</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-04-30</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1998-05-28 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1998-05-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">81.73</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td85">
+        <p class="p7"><span class="s1"><b>816</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11064</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">SAVEA</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1998-05-01</span></p>
+      </td>
+      <td valign="middle" class="td86">
+        <p class="p7"><span class="s1">1998-05-29 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td87">
+        <p class="p7"><span class="s1">1998-05-04 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">30.09</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>818</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11066</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">WHITC</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-05-01</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1998-05-29 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1998-05-04 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">44.72</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td85">
+        <p class="p7"><span class="s1"><b>819</b></span></p>
+      </td>
+      <td valign="middle" class="td39">
+        <p class="p7"><span class="s1">11067</span></p>
+      </td>
+      <td valign="middle" class="td40">
+        <p class="p7"><span class="s1">DRACD</span></p>
+      </td>
+      <td valign="middle" class="td41">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td42">
+        <p class="p7"><span class="s1">1998-05-04</span></p>
+      </td>
+      <td valign="middle" class="td86">
+        <p class="p7"><span class="s1">1998-05-18 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td87">
+        <p class="p7"><span class="s1">1998-05-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td45">
+        <p class="p7"><span class="s1">7.98</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td82">
+        <p class="p7"><span class="s1"><b>821</b></span></p>
+      </td>
+      <td valign="middle" class="td32">
+        <p class="p7"><span class="s1">11069</span></p>
+      </td>
+      <td valign="middle" class="td33">
+        <p class="p7"><span class="s1">TORTU</span></p>
+      </td>
+      <td valign="middle" class="td34">
+        <p class="p7"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td35">
+        <p class="p7"><span class="s1">1998-05-04</span></p>
+      </td>
+      <td valign="middle" class="td83">
+        <p class="p7"><span class="s1">1998-06-01 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td84">
+        <p class="p7"><span class="s1">1998-05-06 00:00:00.000</span></p>
+      </td>
+      <td valign="middle" class="td38">
+        <p class="p7"><span class="s1">15.67</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><span class="s1">809 rows × 7 columns</span></p>
+</body>
+</html>
